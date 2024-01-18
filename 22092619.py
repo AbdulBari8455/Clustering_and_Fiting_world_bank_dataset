@@ -42,21 +42,21 @@ def indicators_data(first_ind_name, Second_ind_name, df1, df2, Year):
 
     Parameters
     ----------
-    first_ind_name : TYPE
-        DESCRIPTION.
-    Second_ind_name : TYPE
-        DESCRIPTION.
-    df1 : TYPE
-        DESCRIPTION.
-    df2 : TYPE
-        DESCRIPTION.
-    Year : TYPE
-        DESCRIPTION.
+    first_ind_name : String
+        Name of First Indicator.
+    Second_ind_name : String
+        Name of Second Indicator.
+    df1 : Pandas Data frame
+        Data Frame to extract data.
+    df2 : Pandas Data Frame
+        Data Frame fo Extract Data.
+    Year : String
+        Year who's Data required.
 
     Returns
     -------
-    df_cluster : TYPE
-        DESCRIPTION.
+    df_cluster : Pandas DataFrame
+        Data For Clustering.
 
     """
     df1 = df1[['Country Name', Year]]
@@ -80,21 +80,21 @@ def merging_datasets(first_ind_name, Second_ind_name, df1, df2, Year):
 
     Parameters
     ----------
-    first_ind_name : TYPE
+    first_ind_name : String
+        Name of first indicator.
+    Second_ind_name : String
+        Name of second indicator.
+    df1 : Pandas DataFrame
+        Data Frame 01.
+    df2 : Pandas DataFrame
         DESCRIPTION.
-    Second_ind_name : TYPE
-        DESCRIPTION.
-    df1 : TYPE
-        DESCRIPTION.
-    df2 : TYPE
-        DESCRIPTION.
-    Year : TYPE
+    Year : String 
         DESCRIPTION.
 
     Returns
     -------
-    df_cluster : TYPE
-        DESCRIPTION.
+    df_cluster : Pandas Data Frame
+        It will return a Pandas DataFrame for Clustering.
 
     """
     df1 = df1[['Country Name', Year]]
@@ -118,19 +118,19 @@ def logistics(t, a, k, t0):
 
     Parameters
     ----------
-    t : TYPE
-        DESCRIPTION.
-    a : TYPE
-        DESCRIPTION.
-    k : TYPE
-        DESCRIPTION.
-    t0 : TYPE
-        DESCRIPTION.
+    t : int
+        initial Year.
+    a : initial Value
+        From Where to Start.
+    k : int
+        Constant.
+    t0 : int
+        Last Year.
 
     Returns
     -------
-    f : TYPE
-        DESCRIPTION.
+    f : List of Values
+        Its the List of Values after computations.
 
     """
     """ Computes logistics function with scale and incr as free parameters
@@ -139,24 +139,24 @@ def logistics(t, a, k, t0):
     return f
 
 
-def fit_and_predict(df, Country_name, Ind, tit, tit_fore, initial):
+def fit_and_predict(df, Country_name, Ind, title, tit_forecast, initial):
     """
 
 
     Parameters
     ----------
-    df : TYPE
-        DESCRIPTION.
-    Country_name : TYPE
-        DESCRIPTION.
-    Ind : TYPE
-        DESCRIPTION.
-    tit : TYPE
-        DESCRIPTION.
-    tit_fore : TYPE
-        DESCRIPTION.
-    initial : TYPE
-        DESCRIPTION.
+    df : Pandas Data Frame
+        For Fitting.
+    Country_name : String
+        Name of Countries.
+    Ind : String
+        Indicator to Forecast.
+    title : String
+        Title of graph.
+    tit_forecast : TYPE
+        Title of Forecast Graph.
+    initial : list
+        List of initial values for fitting.
 
     Returns
     -------
@@ -172,7 +172,7 @@ def fit_and_predict(df, Country_name, Ind, tit, tit_fore, initial):
     plt.legend()
     plt.xlabel('Years')
     plt.ylabel(Ind)
-    plt.title(tit)
+    plt.title(title)
     plt.savefig(Country_name + 'b.png', dpi=300)
     years = np.linspace(1995, 2030)
     print(*popt)
@@ -184,7 +184,7 @@ def fit_and_predict(df, Country_name, Ind, tit, tit_fore, initial):
     low = pop_log - sigma
     up = pop_log + sigma
     plt.figure()
-    plt.title(tit_fore)
+    plt.title(tit_forecast)
     plt.plot(df.index, df[Country_name], label="data")
     plt.plot(years, pop_log, label="Forecast")
     # plot error ranges with transparency
